@@ -9,6 +9,11 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("a");
   const [cocktails, setCocktails] = useState([]);
+  const [showMobileIcon, setShowMobileIcon] = useState(false);
+
+  const setMobileMenu = () => {
+    setShowMobileIcon(!showMobileIcon);
+  };
 
   const fetchDrinks = useCallback(async () => {
     setLoading(true);
@@ -52,6 +57,8 @@ const AppProvider = ({ children }) => {
         loading,
         cocktails,
         setSearchTerm,
+        showMobileIcon,
+        setMobileMenu,
       }}
     >
       {children}

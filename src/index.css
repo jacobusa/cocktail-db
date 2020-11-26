@@ -29,15 +29,17 @@ Variables
 Global Styles 
 ======
 */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: var(--mainBlack);
   background: var(--mainBackground);
   line-height: 1.4;
@@ -148,7 +150,7 @@ Navbar
   max-width: var(--fullWidth);
 }
 .nav-links {
-  display: flex;
+  display: none;
   align-items: center;
 }
 .nav-links a {
@@ -167,6 +169,60 @@ Navbar
 }
 .logo {
   width: 12rem;
+}
+
+.mobile-button-container {
+  transition: var(--mainTransition);
+}
+.mobile-button-container:hover :nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+.mobile-button-container:hover :nth-child(2) {
+  opacity: 0;
+}
+.mobile-button-container:hover :nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -5px);
+}
+
+.btn-line {
+  width: 33px;
+  height: 3px;
+  margin: 0 0 5px 0;
+  background: black;
+  transition: var(--mainTransition);
+}
+.nav-dropdown {
+  visibility: hidden;
+  transition: var(--mainTransition);
+  transform-origin: top;
+  transform: scaleY(0);
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: var(--darkGrey);
+  padding: 15px 40px 15px 3em;
+  border-radius: 10px;
+}
+.nav-dropdown.show {
+  visibility: visible;
+  transform: translateY(45%);
+  transform: scaleY(1) translateY(35%);
+  display: block;
+  opacity: 1;
+}
+.dropdown-links li {
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid white;
+  padding-left: 60px;
+}
+.dropdown-links li a {
+  color: var(--primaryColor);
+  font-weight: 500;
+  transition: var(--mainTransition);
+}
+.dropdown-links li a:hover {
+  color: white;
+  font-weight: 500;
 }
 /* 
 ====== 
@@ -225,6 +281,12 @@ Cocktails List
 @media screen and (min-width: 576px) {
   .cocktails-center {
     grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));
+  }
+  .nav-links {
+    display: flex;
+  }
+  .mobile-button-container {
+    display: none;
   }
 }
 /* 
@@ -375,7 +437,7 @@ Cocktail
 .loader:after {
   position: absolute;
   top: 0;
-  content: '';
+  content: "";
 }
 .loader:before {
   left: -1.5em;
